@@ -4,182 +4,184 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Eva — Prove your worth</title>
-<meta name="description" content="Your contribution. Evidenced. Portable. Yours. Eva helps workers build an unignorable record of the value they create.">
+<meta name="description" content="Your contribution. Your value. Your proof. Eva helps workers build an unignorable record of the value they create.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Barlow+Condensed:wght@500;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --ink: #1a1714;
-    --paper: #f5f0e8;
-    --warm: #f0e8d8;
-    --coral: #c94f2a;
-    --coral-light: #e8704a;
-    --muted: #8a7f72;
-    --border: rgba(26,23,20,0.12);
-    --serif: 'Playfair Display', Georgia, serif;
-    --sans: 'DM Sans', 'Helvetica Neue', sans-serif;
+    --navy: #042C53;
+    --navy-mid: #0C447C;
+    --navy-light: #185FA5;
+    --blue-muted: #7fa8c9;
+    --blue-pale: #B5D4F4;
+    --white: #ffffff;
+    --white-60: rgba(255,255,255,0.6);
+    --white-30: rgba(255,255,255,0.3);
+    --white-12: rgba(255,255,255,0.12);
+    --white-06: rgba(255,255,255,0.06);
+    --accent: #3B8BD4;
+    --accent-bright: #5BA3E8;
+    --border: rgba(255,255,255,0.1);
+    --sans: 'Barlow', 'Helvetica Neue', sans-serif;
+    --condensed: 'Barlow Condensed', 'Helvetica Neue', sans-serif;
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
   html { scroll-behavior: smooth; }
 
   body {
-    background: var(--paper);
-    color: var(--ink);
+    background: var(--navy);
+    color: var(--white);
     font-family: var(--sans);
     font-size: 16px;
     line-height: 1.6;
     overflow-x: hidden;
   }
 
-  /* Grain overlay */
   body::before {
     content: '';
     position: fixed;
     inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    background-image:
+      linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+    background-size: 60px 60px;
     pointer-events: none;
-    z-index: 1000;
-    opacity: 0.4;
+    z-index: 0;
   }
 
-  /* Nav */
+  body::after {
+    content: '';
+    position: fixed;
+    top: -200px; left: -200px;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(59,139,212,0.12) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
   nav {
     position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
+    top: 0; left: 0; right: 0;
     z-index: 100;
-    padding: 20px 40px;
+    padding: 18px 48px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: rgba(245,240,232,0.85);
-    backdrop-filter: blur(12px);
+    background: rgba(4,44,83,0.9);
+    backdrop-filter: blur(16px);
     border-bottom: 1px solid var(--border);
   }
 
   .nav-logo {
-    font-family: var(--serif);
-    font-size: 20px;
+    font-family: var(--condensed);
+    font-size: 22px;
     font-weight: 700;
-    color: var(--ink);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--white);
     text-decoration: none;
-    letter-spacing: -0.02em;
   }
 
-  .nav-logo span {
-    color: var(--coral);
-  }
+  .nav-logo span { color: var(--blue-muted); }
 
   .nav-cta {
-    font-family: var(--sans);
-    font-size: 13px;
-    font-weight: 500;
-    color: var(--coral);
-    text-decoration: none;
-    letter-spacing: 0.04em;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
-    border-bottom: 1px solid var(--coral);
-    padding-bottom: 1px;
-    transition: opacity 0.2s;
+    color: var(--blue-pale);
+    text-decoration: none;
+    border: 1px solid var(--border);
+    padding: 8px 20px;
+    border-radius: 2px;
+    transition: background 0.2s, border-color 0.2s;
   }
 
-  .nav-cta:hover { opacity: 0.7; }
+  .nav-cta:hover { background: var(--white-06); border-color: var(--blue-muted); }
 
-  /* Hero */
   .hero {
+    position: relative;
+    z-index: 1;
     min-height: 100vh;
     display: grid;
     grid-template-columns: 1fr 1fr;
     align-items: center;
-    padding: 120px 40px 80px;
+    padding: 120px 48px 80px;
     gap: 80px;
-    max-width: 1200px;
+    max-width: 1280px;
     margin: 0 auto;
   }
 
-  .hero-left {
-    animation: fadeUp 0.8s ease both;
-  }
+  .hero-left { animation: fadeUp 0.8s ease both; }
+  .hero-right { animation: fadeUp 0.8s 0.15s ease both; }
 
   .hero-eyebrow {
-    font-family: var(--sans);
     font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.14em;
+    font-weight: 600;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: var(--coral);
+    color: var(--blue-muted);
     margin-bottom: 24px;
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
   }
 
   .hero-eyebrow::before {
     content: '';
     display: block;
-    width: 24px;
-    height: 1px;
-    background: var(--coral);
+    width: 28px; height: 1px;
+    background: var(--blue-muted);
   }
 
   .hero-headline {
-    font-family: var(--serif);
-    font-size: clamp(42px, 5vw, 68px);
+    font-family: var(--condensed);
+    font-size: clamp(52px, 6vw, 84px);
     font-weight: 700;
-    line-height: 1.1;
-    letter-spacing: -0.02em;
-    color: var(--ink);
+    line-height: 1.0;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    color: var(--white);
     margin-bottom: 28px;
   }
 
-  .hero-headline em {
-    font-style: italic;
-    color: var(--coral);
-  }
+  .hero-headline em { font-style: normal; color: var(--blue-muted); }
 
   .hero-sub {
-    font-size: 18px;
+    font-size: 17px;
     font-weight: 300;
-    color: var(--muted);
+    color: var(--white-60);
     line-height: 1.7;
     margin-bottom: 40px;
-    max-width: 440px;
+    max-width: 460px;
   }
 
-  .hero-sub strong {
-    color: var(--ink);
-    font-weight: 500;
-  }
+  .hero-sub strong { color: var(--white); font-weight: 600; }
 
   .hero-proof {
     display: flex;
     align-items: center;
     gap: 16px;
-    font-size: 13px;
-    color: var(--muted);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--white-30);
   }
 
   .hero-proof-dot {
-    width: 6px;
-    height: 6px;
+    width: 5px; height: 5px;
     border-radius: 50%;
-    background: var(--coral);
+    background: var(--accent);
     flex-shrink: 0;
   }
 
-  /* Hero right — form card */
-  .hero-right {
-    animation: fadeUp 0.8s 0.15s ease both;
-  }
-
   .form-card {
-    background: var(--ink);
-    color: var(--paper);
-    border-radius: 4px;
-    padding: 48px;
+    background: var(--navy-mid);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 44px;
     position: relative;
     overflow: hidden;
   }
@@ -187,116 +189,103 @@
   .form-card::before {
     content: '';
     position: absolute;
-    top: -60px;
-    right: -60px;
-    width: 200px;
-    height: 200px;
+    top: -80px; right: -80px;
+    width: 240px; height: 240px;
     border-radius: 50%;
-    background: var(--coral);
-    opacity: 0.08;
+    background: var(--accent);
+    opacity: 0.06;
   }
 
   .form-card-label {
     font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.12em;
+    font-weight: 600;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: var(--coral-light);
-    margin-bottom: 16px;
+    color: var(--blue-muted);
+    margin-bottom: 14px;
   }
 
   .form-card-heading {
-    font-family: var(--serif);
-    font-size: 26px;
+    font-family: var(--condensed);
+    font-size: 28px;
     font-weight: 700;
-    line-height: 1.3;
-    margin-bottom: 32px;
-    color: var(--paper);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    line-height: 1.2;
+    margin-bottom: 28px;
+    color: var(--white);
   }
 
-  .form-field {
-    margin-bottom: 20px;
-  }
+  .form-field { margin-bottom: 18px; }
 
   .form-field label {
     display: block;
-    font-size: 12px;
-    font-weight: 500;
-    letter-spacing: 0.06em;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: rgba(245,240,232,0.5);
+    color: var(--white-30);
     margin-bottom: 8px;
   }
 
   .form-field input,
   .form-field textarea {
     width: 100%;
-    background: rgba(245,240,232,0.06);
-    border: 1px solid rgba(245,240,232,0.12);
-    border-radius: 3px;
-    padding: 14px 16px;
+    background: var(--white-06);
+    border: 1px solid var(--white-12);
+    border-radius: 2px;
+    padding: 13px 16px;
     font-family: var(--sans);
     font-size: 15px;
-    color: var(--paper);
+    color: var(--white);
     outline: none;
     transition: border-color 0.2s;
     resize: none;
   }
 
   .form-field input::placeholder,
-  .form-field textarea::placeholder {
-    color: rgba(245,240,232,0.25);
-  }
+  .form-field textarea::placeholder { color: var(--white-30); }
 
   .form-field input:focus,
-  .form-field textarea:focus {
-    border-color: var(--coral-light);
-  }
+  .form-field textarea:focus { border-color: var(--accent); }
 
-  .form-field textarea {
-    height: 90px;
-    line-height: 1.5;
-  }
+  .form-field textarea { height: 88px; line-height: 1.5; }
 
   .form-submit {
     width: 100%;
-    background: var(--coral);
+    background: var(--accent);
     color: white;
     border: none;
-    border-radius: 3px;
-    padding: 16px 24px;
-    font-family: var(--sans);
-    font-size: 14px;
-    font-weight: 500;
-    letter-spacing: 0.06em;
+    border-radius: 2px;
+    padding: 15px 24px;
+    font-family: var(--condensed);
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
     cursor: pointer;
     transition: background 0.2s, transform 0.1s;
     margin-top: 8px;
   }
 
-  .form-submit:hover { background: var(--coral-light); }
+  .form-submit:hover { background: var(--accent-bright); }
   .form-submit:active { transform: scale(0.99); }
 
   .form-note {
     font-size: 12px;
-    color: rgba(245,240,232,0.3);
-    margin-top: 16px;
+    color: var(--white-30);
+    margin-top: 14px;
     line-height: 1.5;
   }
 
-  /* Success state */
-  .form-success {
-    display: none;
-    text-align: center;
-    padding: 20px 0;
-  }
+  .form-note strong { color: var(--blue-muted); font-weight: 600; }
+
+  .form-success { display: none; text-align: center; padding: 20px 0; }
 
   .form-success-icon {
-    width: 48px;
-    height: 48px;
+    width: 48px; height: 48px;
     border-radius: 50%;
-    background: rgba(201,79,42,0.15);
+    background: rgba(59,139,212,0.15);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -304,51 +293,49 @@
   }
 
   .form-success h3 {
-    font-family: var(--serif);
-    font-size: 22px;
-    color: var(--paper);
+    font-family: var(--condensed);
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--white);
     margin-bottom: 12px;
   }
 
-  .form-success p {
-    font-size: 14px;
-    color: rgba(245,240,232,0.5);
-    line-height: 1.6;
-  }
+  .form-success p { font-size: 14px; color: var(--white-60); line-height: 1.6; }
 
-  /* Divider */
   .divider {
-    max-width: 1200px;
+    position: relative; z-index: 1;
+    max-width: 1280px;
     margin: 0 auto;
-    padding: 0 40px;
+    padding: 0 48px;
     border-top: 1px solid var(--border);
-  }
-
-  /* Problem section */
-  .problem {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 100px 40px;
   }
 
   .section-label {
     font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.14em;
+    font-weight: 600;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: var(--coral);
+    color: var(--blue-muted);
     margin-bottom: 48px;
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
   }
 
   .section-label::before {
     content: '';
     display: block;
-    width: 24px;
-    height: 1px;
-    background: var(--coral);
+    width: 28px; height: 1px;
+    background: var(--blue-muted);
+  }
+
+  .problem {
+    position: relative; z-index: 1;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 100px 48px;
   }
 
   .problem-grid {
@@ -359,61 +346,55 @@
     border: 1px solid var(--border);
   }
 
-  .problem-item {
-    background: var(--paper);
-    padding: 40px 36px;
-    position: relative;
-  }
+  .problem-item { background: var(--navy); padding: 40px 36px; }
 
   .problem-number {
-    font-family: var(--serif);
-    font-size: 48px;
+    font-family: var(--condensed);
+    font-size: 52px;
     font-weight: 700;
-    color: var(--coral);
+    color: var(--accent);
     opacity: 0.2;
     line-height: 1;
     margin-bottom: 16px;
+    letter-spacing: 0.05em;
   }
 
   .problem-item h3 {
-    font-family: var(--serif);
+    font-family: var(--condensed);
     font-size: 20px;
     font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
     margin-bottom: 12px;
-    line-height: 1.3;
+    line-height: 1.2;
+    color: var(--white);
   }
 
-  .problem-item p {
-    font-size: 14px;
-    color: var(--muted);
-    line-height: 1.7;
-  }
+  .problem-item p { font-size: 14px; color: var(--white-60); line-height: 1.7; }
 
-  /* How it works */
   .how {
-    background: var(--warm);
-    padding: 100px 40px;
+    position: relative; z-index: 1;
+    background: var(--navy-mid);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 100px 48px;
   }
 
-  .how-inner {
-    max-width: 1200px;
-    margin: 0 auto;
-  }
+  .how-inner { max-width: 1280px; margin: 0 auto; }
 
   .how-heading {
-    font-family: var(--serif);
-    font-size: clamp(32px, 4vw, 48px);
+    font-family: var(--condensed);
+    font-size: clamp(32px, 4vw, 52px);
     font-weight: 700;
-    letter-spacing: -0.02em;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
     margin-bottom: 64px;
-    max-width: 600px;
-    line-height: 1.2;
+    max-width: 640px;
+    line-height: 1.1;
+    color: var(--white);
   }
 
-  .how-heading em {
-    font-style: italic;
-    color: var(--coral);
-  }
+  .how-heading em { font-style: normal; color: var(--blue-muted); }
 
   .how-steps {
     display: grid;
@@ -425,57 +406,49 @@
   .how-steps::before {
     content: '';
     position: absolute;
-    top: 20px;
-    left: 20px;
-    right: 20px;
+    top: 20px; left: 20px; right: 20px;
     height: 1px;
     background: var(--border);
   }
 
-  .how-step {
-    position: relative;
-    padding-top: 48px;
-  }
+  .how-step { position: relative; padding-top: 48px; }
 
   .how-step-dot {
     position: absolute;
-    top: 12px;
-    left: 0;
-    width: 16px;
-    height: 16px;
+    top: 12px; left: 0;
+    width: 16px; height: 16px;
     border-radius: 50%;
-    background: var(--paper);
-    border: 2px solid var(--coral);
+    background: var(--navy-mid);
+    border: 2px solid var(--accent);
   }
 
   .how-step-num {
     font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.1em;
-    color: var(--coral);
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    color: var(--blue-muted);
     text-transform: uppercase;
     margin-bottom: 12px;
   }
 
   .how-step h3 {
-    font-family: var(--serif);
+    font-family: var(--condensed);
     font-size: 18px;
     font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
     margin-bottom: 10px;
-    line-height: 1.3;
+    line-height: 1.2;
+    color: var(--white);
   }
 
-  .how-step p {
-    font-size: 13px;
-    color: var(--muted);
-    line-height: 1.7;
-  }
+  .how-step p { font-size: 13px; color: var(--white-60); line-height: 1.7; }
 
-  /* Quote */
   .quote-section {
-    max-width: 1200px;
+    position: relative; z-index: 1;
+    max-width: 1280px;
     margin: 0 auto;
-    padding: 100px 40px;
+    padding: 100px 48px;
     display: grid;
     grid-template-columns: 1fr 2fr;
     gap: 80px;
@@ -484,49 +457,46 @@
 
   .quote-label {
     font-size: 11px;
-    font-weight: 500;
+    font-weight: 600;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: var(--muted);
+    color: var(--white-30);
   }
 
   blockquote {
-    font-family: var(--serif);
-    font-size: clamp(24px, 3vw, 36px);
+    font-size: clamp(20px, 2.5vw, 30px);
+    font-weight: 300;
     font-style: italic;
-    font-weight: 400;
-    line-height: 1.4;
-    color: var(--ink);
-    position: relative;
+    line-height: 1.5;
+    color: var(--blue-pale);
     padding-left: 32px;
-    border-left: 3px solid var(--coral);
+    border-left: 2px solid var(--accent);
   }
 
-  /* Footer CTA */
   .footer-cta {
-    background: var(--ink);
-    color: var(--paper);
-    padding: 100px 40px;
+    position: relative; z-index: 1;
+    background: var(--navy-mid);
+    border-top: 1px solid var(--border);
+    padding: 100px 48px;
     text-align: center;
   }
 
   .footer-cta h2 {
-    font-family: var(--serif);
-    font-size: clamp(36px, 5vw, 60px);
+    font-family: var(--condensed);
+    font-size: clamp(40px, 6vw, 72px);
     font-weight: 700;
-    letter-spacing: -0.02em;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
     margin-bottom: 20px;
-    line-height: 1.15;
+    line-height: 1.05;
+    color: var(--white);
   }
 
-  .footer-cta h2 em {
-    font-style: italic;
-    color: var(--coral-light);
-  }
+  .footer-cta h2 em { font-style: normal; color: var(--blue-muted); }
 
   .footer-cta p {
-    font-size: 17px;
-    color: rgba(245,240,232,0.5);
+    font-size: 16px;
+    color: var(--white-60);
     margin-bottom: 40px;
     max-width: 480px;
     margin-left: auto;
@@ -535,93 +505,71 @@
 
   .footer-cta a {
     display: inline-block;
-    background: var(--coral);
+    background: var(--accent);
     color: white;
     text-decoration: none;
-    padding: 16px 40px;
-    border-radius: 3px;
-    font-size: 13px;
-    font-weight: 500;
-    letter-spacing: 0.08em;
+    padding: 16px 44px;
+    border-radius: 2px;
+    font-family: var(--condensed);
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
     transition: background 0.2s;
   }
 
-  .footer-cta a:hover { background: var(--coral-light); }
+  .footer-cta a:hover { background: var(--accent-bright); }
 
-  /* Footer */
   footer {
-    background: var(--ink);
-    border-top: 1px solid rgba(245,240,232,0.06);
-    padding: 32px 40px;
+    position: relative; z-index: 1;
+    background: var(--navy);
+    border-top: 1px solid var(--border);
+    padding: 28px 48px;
     display: flex;
     align-items: center;
     justify-content: space-between;
   }
 
   footer .logo {
-    font-family: var(--serif);
-    font-size: 16px;
-    color: rgba(245,240,232,0.4);
+    font-family: var(--condensed);
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--white-30);
   }
 
-  footer .logo span { color: var(--coral); }
+  footer .logo span { color: var(--blue-muted); }
+  footer p { font-size: 12px; color: var(--white-30); letter-spacing: 0.04em; }
 
-  footer p {
-    font-size: 12px;
-    color: rgba(245,240,232,0.2);
-  }
-
-  /* Animations */
   @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(24px); }
+    from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
   }
 
-  /* Mobile */
   @media (max-width: 768px) {
     nav { padding: 16px 20px; }
-
-    .hero {
-      grid-template-columns: 1fr;
-      padding: 100px 20px 60px;
-      gap: 48px;
-      min-height: auto;
-    }
-
-    .form-card { padding: 32px 24px; }
-
-    .problem-grid { grid-template-columns: 1fr; }
-
-    .how { padding: 60px 20px; }
-
-    .how-steps {
-      grid-template-columns: 1fr 1fr;
-      gap: 32px;
-    }
-
-    .how-steps::before { display: none; }
-
-    .quote-section {
-      grid-template-columns: 1fr;
-      gap: 24px;
-      padding: 60px 20px;
-    }
-
+    .hero { grid-template-columns: 1fr; padding: 100px 20px 60px; gap: 48px; min-height: auto; }
+    .form-card { padding: 28px 20px; }
     .problem { padding: 60px 20px; }
+    .problem-grid { grid-template-columns: 1fr; }
+    .how { padding: 60px 20px; }
+    .how-steps { grid-template-columns: 1fr 1fr; gap: 32px; }
+    .how-steps::before { display: none; }
+    .quote-section { grid-template-columns: 1fr; gap: 24px; padding: 60px 20px; }
     .footer-cta { padding: 60px 20px; }
     footer { flex-direction: column; gap: 12px; text-align: center; padding: 24px 20px; }
+    .divider { padding: 0 20px; }
   }
 </style>
 </head>
 <body>
 
 <nav>
-  <a href="#" class="nav-logo">eva <span>·</span> valuebased.work</a>
+  <a href="#" class="nav-logo">Eva <span>·</span> Valuebased.work</a>
   <a href="#waitlist" class="nav-cta">Join the waitlist</a>
 </nav>
 
-<!-- Hero -->
 <section class="hero">
   <div class="hero-left">
     <div class="hero-eyebrow">Employee Value Advocate</div>
@@ -644,8 +592,7 @@
   <div class="hero-right" id="waitlist">
     <div class="form-card">
       <div class="form-card-label">Early access</div>
-      <h2 class="form-card-heading">Be the first to know when Eva launches.</h2>
-
+      <h2 class="form-card-heading">Be first to know when Eva launches.</h2>
       <div id="form-body">
         <div class="form-field">
           <label for="name">Your name</label>
@@ -660,13 +607,12 @@
           <textarea id="question" placeholder="Tell us briefly — your answer shapes what we build..."></textarea>
         </div>
         <button class="form-submit" onclick="handleSubmit()">Prove your worth</button>
-        <p class="form-note">Early adopters will receive lifetime access to Eva's premium features — on us. No spam. No sharing.</p>
+        <p class="form-note"><strong>Early adopters receive lifetime access to premium features — on us.</strong> No spam. No sharing.</p>
       </div>
-
       <div class="form-success" id="form-success">
         <div class="form-success-icon">
           <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-            <path d="M4 10l4 4 8-8" stroke="#c94f2a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M4 10l4 4 8-8" stroke="#3B8BD4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </div>
         <h3>You're on the list.</h3>
@@ -678,29 +624,27 @@
 
 <div class="divider"></div>
 
-<!-- Problem -->
 <section class="problem">
   <div class="section-label">The problem</div>
   <div class="problem-grid">
     <div class="problem-item">
       <div class="problem-number">01</div>
-      <h3>Your contribution is recorded — just not quantified</h3>
+      <h3>Recorded — just not quantified</h3>
       <p>CVs, résumés, LinkedIn profiles — they list what you did, not what it was worth. The value you created is invisible, even to the people deciding your next salary.</p>
     </div>
     <div class="problem-item">
       <div class="problem-number">02</div>
-      <h3>Recognition is rationed by visibility, not value</h3>
+      <h3>Visibility beats value</h3>
       <p>The people who speak loudest get promoted. The people who do the work get overlooked. This isn't a personality problem — it's a systems problem.</p>
     </div>
     <div class="problem-item">
       <div class="problem-number">03</div>
-      <h3>Your history travels with you — but your value doesn't</h3>
-      <p>A résumé gets you in the room. It rarely wins you the argument. Without verified, quantified evidence of what you've actually delivered, you're negotiating on trust — not proof.</p>
+      <h3>History travels. Value doesn't.</h3>
+      <p>A résumé gets you in the room. It rarely wins you the argument. Without verified, quantified evidence of what you've delivered, you're negotiating on trust — not proof.</p>
     </div>
   </div>
 </section>
 
-<!-- How it works -->
 <section class="how">
   <div class="how-inner">
     <div class="section-label">How Eva works</div>
@@ -727,14 +671,13 @@
       <div class="how-step">
         <div class="how-step-dot"></div>
         <div class="how-step-num">Step 04</div>
-        <h3 id="step4-heading">Walk into every conversation with proof</h3>
+        <h3 id="step4-heading">Walk in with proof</h3>
         <p id="step4-body">Pay rise. Promotion. New role. Your verified contribution record means you're no longer asking to be believed — you're presenting evidence. That changes the dynamic entirely.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Quote -->
 <section class="quote-section">
   <div class="quote-label">Why it matters</div>
   <blockquote>
@@ -744,7 +687,6 @@
 
 <div class="divider"></div>
 
-<!-- Footer CTA -->
 <section class="footer-cta">
   <h2>Your contribution.<br>Your value.<br><em>Your proof.</em></h2>
   <p>Eva is in development. Join the waitlist and receive lifetime access to premium features — on us.</p>
@@ -752,21 +694,17 @@
 </section>
 
 <footer>
-  <div class="logo">eva <span>·</span> valuebased.work</div>
-  <p>© 2026 ValueBased.Work. Worker-owned data. GDPR-first.</p>
+  <div class="logo">Eva <span>·</span> Valuebased.work</div>
+  <p>© 2026 ValueBased.Work · Worker-owned data · GDPR-first</p>
 </footer>
 
 <script>
-// A/B test
 const abVariants = [
   'Surface the evidence you need, in the terms that matter — for your next pay rise, promotion, or job interview.',
   'Shine a light on how well — or how poorly — your employer recognises the value you actually create.'
 ];
 const step4Variants = {
-  heading: [
-    'Walk into every conversation with proof',
-    'Hold your employer to account — with evidence'
-  ],
+  heading: ['Walk in with proof', 'Hold your employer to account — with evidence'],
   body: [
     'Pay rise. Promotion. New role. Your verified contribution record means you\'re no longer asking to be believed — you\'re presenting evidence. That changes the dynamic entirely.',
     'When recognition is poor, Eva makes the gap visible. Not as a complaint — as a documented, verified record of value that was created and went unacknowledged. That\'s a different kind of power.'
@@ -778,30 +716,17 @@ document.getElementById('ab-copy').textContent = abVariants[abIdx];
 document.getElementById('ab-copy').dataset.version = abVersion;
 document.getElementById('step4-heading').textContent = step4Variants.heading[abIdx];
 document.getElementById('step4-body').textContent = step4Variants.body[abIdx];
-console.log('A/B variant shown:', abVersion);
 
 function handleSubmit() {
   const name = document.getElementById('name').value.trim();
   const email = document.getElementById('email').value.trim();
   const question = document.getElementById('question').value.trim();
-
-  if (!name || !email) {
-    alert('Please enter your name and email to join the waitlist.');
-    return;
-  }
-
-  if (!email.includes('@')) {
-    alert('Please enter a valid email address.');
-    return;
-  }
-
-  // Log to console for now — replace with your form backend (Formspree, Netlify Forms, etc.)
+  if (!name || !email) { alert('Please enter your name and email to join the waitlist.'); return; }
+  if (!email.includes('@')) { alert('Please enter a valid email address.'); return; }
   const abVariant = document.getElementById('ab-copy').dataset.version;
-
   const submitBtn = document.querySelector('.form-submit');
   submitBtn.textContent = 'Sending...';
   submitBtn.disabled = true;
-
   fetch('https://formspree.io/f/xgopdjwp', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
@@ -824,12 +749,10 @@ function handleSubmit() {
   });
 }
 
-// Smooth scroll for nav CTA
 document.querySelector('.nav-cta').addEventListener('click', function(e) {
   e.preventDefault();
   document.getElementById('waitlist').scrollIntoView({ behavior: 'smooth' });
 });
 </script>
-
 </body>
 </html>
